@@ -28,7 +28,7 @@ function LoginForm({ login }) {
         </div>
         <TextInput
           type="email"
-          id="email"
+          id="email_login"
           placeholder="name@domain.com"
           value={email}
           onChange={onEmailChange}
@@ -44,7 +44,7 @@ function LoginForm({ login }) {
           />
         </div>
         <TextInput
-          id="password"
+          id="password_login"
           type="password"
           value={password}
           onChange={onPasswordChange}

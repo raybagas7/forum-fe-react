@@ -2,7 +2,7 @@ import React from 'react';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 
-function AuthenticationContainer({ login }) {
+function AuthenticationContainer({ login, signup }) {
   return (
     <div className="fixed flex justify-between bottom-0 h-20 shadow-behind
         shadow-white/20 bg-[#00ADB5] w-full gap-5"
@@ -15,7 +15,7 @@ function AuthenticationContainer({ login }) {
         </div>
         <div className="flex gap-3">
           <LoginModal login={login} />
-          <SignupModal />
+          <SignupModal signup={signup} />
         </div>
       </div>
       <div className="flex-1" />

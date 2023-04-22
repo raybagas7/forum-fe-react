@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoginPage() {
+function LeaderboardsPage() {
   return (
     <section className="h-screen min-h-screen bg-cyan-400">
       <div>LBD</div>
@@ -8,4 +8,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LeaderboardsPage;

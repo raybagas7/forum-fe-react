@@ -5,7 +5,7 @@ import {
 import { GiFire } from 'react-icons/gi';
 import useInput from '../../hooks/useInput';
 
-function SignupForm() {
+function SignupForm({ signup }) {
   const [name, onNameChange] = useInput('');
   const [email, onEmailChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
@@ -28,7 +28,7 @@ function SignupForm() {
         </div>
         <TextInput
           type="text"
-          id="name"
+          id="name_signup"
           placeholder="John Doe"
           value={name}
           onChange={onNameChange}
@@ -45,7 +45,7 @@ function SignupForm() {
         </div>
         <TextInput
           type="email"
-          id="email"
+          id="email_signup"
           placeholder="name@domain.com"
           value={email}
           onChange={onEmailChange}
@@ -61,7 +61,7 @@ function SignupForm() {
           />
         </div>
         <TextInput
-          id="password"
+          id="password_signup"
           type="password"
           value={password}
           onChange={onPasswordChange}
@@ -70,6 +70,7 @@ function SignupForm() {
       </div>
       <div className="w-full flex justify-center">
         <button
+          onClick={() => signup({ name, email, password })}
           type="button"
           className="w-fit bg-[#00adb5] text-white hover:bg-[#00adb5]/80 transition duration-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

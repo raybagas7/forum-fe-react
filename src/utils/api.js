@@ -143,6 +143,22 @@ const api = (() => {
     return threads;
   }
 
+  async function seeLeaderboards() {
+    const response = await fetch(`${BASE_URL}/leaderboards`);
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { leaderboards } } = responseJson;
+
+    return leaderboards;
+  }
+
   async function seeThreadDetail(id) {
     const response = await fetch(`${BASE_URL}/threads/${id}`);
 
@@ -190,6 +206,7 @@ const api = (() => {
     createThread,
     toggleLikeTalk,
     seeThreadDetail,
+    seeLeaderboards
   };
 })();
 

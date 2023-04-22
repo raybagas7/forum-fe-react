@@ -5,7 +5,7 @@ import {
 } from 'flowbite-react';
 import SignupForm from './SignupForm';
 
-function SignupModal() {
+function SignupModal({ signup }) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ function SignupModal() {
       >
         <Modal.Header className="bg-[#222831] rounded-t-md" />
         <Modal.Body className="bg-[#222831] rounded-b-md">
-          <SignupForm />
+          <SignupForm signup={signup} />
         </Modal.Body>
       </Modal>
     </>

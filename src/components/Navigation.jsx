@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GiFire } from 'react-icons/gi';
 import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { MdLeaderboard, MdOutlineLeaderboard } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import UserProfile from './UserProfile';
 import AuthenticationContainer from './AuthenticationComponents/AuthenticationContainer';
 import { asyncSetAuthUser, asyncUnsetAuthUser } from '../states/authUser/action';
@@ -11,8 +11,9 @@ import { asyncSetAuthUser, asyncUnsetAuthUser } from '../states/authUser/action'
 import { asyncAutoLoginAfterSignup } from '../states/shared/action';
 
 function Navigation({ authUser }) {
-  const [activeNav, setActiveNav] = useState('home');
-  const navigate = useNavigate();
+  const param = useLocation();
+  const activeNav = param.pathname;
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onLogin = ({ email, password }) => {
@@ -27,15 +28,13 @@ function Navigation({ authUser }) {
     dispatch(asyncAutoLoginAfterSignup({ name, email, password }));
   };
 
-  const onClickHome = () => {
-    setActiveNav('home');
-    navigate('/');
-  };
+  // const onClickHome = () => {
+  //   navigate('/');
+  // };
 
-  const onClickLeaderboards = () => {
-    setActiveNav('leaderboards');
-    navigate('/leaderboards');
-  };
+  // const onClickLeaderboards = () => {
+  //   navigate('/leaderboards');
+  // };
 
   return (
     <>
@@ -48,20 +47,20 @@ function Navigation({ authUser }) {
               </div>
               <nav>
                 <ul className="flex flex-col gap-3 text-xl">
-                  <li
-                    onClick={onClickHome}
+                  <Link
+                    to="/"
                     className="flex w-fit cursor-pointer items-center gap-5 rounded-full p-2 transition duration-100 hover:bg-white/10"
                   >
-                    {activeNav === 'home' ? <AiFillHome className="h-8 w-8" /> : <AiOutlineHome className="h-8 w-8" />}
+                    {activeNav === '/' ? <AiFillHome className="h-8 w-8" /> : <AiOutlineHome className="h-8 w-8" />}
                     <span className="mr-5">Home</span>
-                  </li>
-                  <li
-                    onClick={onClickLeaderboards}
+                  </Link>
+                  <Link
+                    to="/leaderboards"
                     className="flex w-fit cursor-pointer items-center gap-5 rounded-full p-2 transition duration-100 hover:bg-white/10"
                   >
-                    {activeNav === 'leaderboards' ? <MdLeaderboard className="h-8 w-8" /> : <MdOutlineLeaderboard className="h-8 w-8" />}
+                    {activeNav === '/leaderboards' ? <MdLeaderboard className="h-8 w-8" /> : <MdOutlineLeaderboard className="h-8 w-8" />}
                     <span className="mr-5">Leaderboards</span>
-                  </li>
+                  </Link>
                 </ul>
               </nav>
             </div>

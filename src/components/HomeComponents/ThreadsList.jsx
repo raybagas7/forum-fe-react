@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ThreadActions from './ThreadActions';
 import ThreadOwner from './ThreadOwner';
 import { postedAt } from '../../utils';
@@ -6,13 +7,10 @@ import { postedAt } from '../../utils';
 // AiFillDislike, AiFillLike
 // upVotesBy, downVotesBy, totalComments, ownerId
 function ThreadsList({
-  user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser
+  id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser
 }) {
-  function handleParentClick() {
-    // console.log('parent');
-  }
   return (
-    <a href="#ba" onClick={handleParentClick}>
+    <Link to={`/threads/${id}`}>
       <article
         className="flex cursor-pointer flex-col gap-3 border-b border-solid border-[#393E46]
       p-5 pb-3 transition duration-100 hover:bg-[#393E46]/30"
@@ -44,7 +42,7 @@ function ThreadsList({
           ? <ThreadActions upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
           : null}
       </article>
-    </a>
+    </Link>
   );
 }
 

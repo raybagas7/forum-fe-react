@@ -6,6 +6,7 @@ import Loading from './components/Loading';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import 'flowbite';
 import LeaderboardsPage from './pages/LeaderboardsPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/*" element={<HomePage />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
+          <Route path="/threads/:id" element={<DetailPage />} />
         </Routes>
       </main>
     </>

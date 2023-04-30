@@ -36,7 +36,8 @@ function HomePage() {
   const filteredThreadList = () => threadList.filter((thread) => thread.category.toLowerCase()
     .includes(chosenCategory.toLowerCase()));
 
-  const categories = threads.map((thread) => thread.category);
+  const categories = threads.map((thread) => thread.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
 
   return (
     <div className="min-h-screen bg-[#222831] text-[#EEEEEE]">

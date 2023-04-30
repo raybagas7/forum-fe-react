@@ -21,7 +21,8 @@ function DetailPage() {
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
 
-  const categories = threads.map((thread) => thread.category);
+  const categories = threads.map((thread) => thread.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
 
   // if (!detailThread) {
   //   return null;

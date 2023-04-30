@@ -21,6 +21,7 @@ function addThreadActionCreator(thread) {
     type: ActionType.ADD_THREAD,
     payload: {
       thread,
+
     },
   };
 }
@@ -44,5 +45,5 @@ export {
   ActionType,
   receiveThreadsActionCreator,
   addThreadActionCreator,
-  asyncAddThread
+  asyncAddThread,
 };

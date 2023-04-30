@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-function detailThreadReducer(detailThread = [], action = {}) {
+function detailThreadReducer(detailThread = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
       return action.payload.detailThread;

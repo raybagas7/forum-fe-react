@@ -6,6 +6,7 @@ import { asyncAddThread } from '../../states/threads/action';
 
 function ThreadsContainer({ threads, authUser }) {
   // console.log(threads);
+
   const dispatch = useDispatch();
 
   const onAddThread = ({ title, category, body }) => {

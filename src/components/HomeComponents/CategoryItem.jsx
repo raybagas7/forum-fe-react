@@ -12,7 +12,7 @@ function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
           <button
             type="button"
             onClick={onClickCategory}
-            className="cursor-pointer rounded-full bg-[#00ADB5] p-1 pl-3 pr-3 before:content-['#'] hover:bg-white/30"
+            className="cursor-pointer rounded-full bg-[#00ADB5] p-1 pl-3 pr-3 before:content-['#'] hover:bg-[#00ADB5]/30"
           >
             {category}
           </button>

@@ -6,7 +6,6 @@ function DetailOwnerAvatar({ avatar }) {
     <div>
       <Avatar
         img={avatar}
-        placeholderInitials="PP"
         size="md"
         rounded
       />

@@ -3,6 +3,7 @@ import React from 'react';
 import { postedAt } from '../../utils';
 import DetailOwnerAvatar from './DetailOwnerAvatar';
 import ThreadActions from '../HomeComponents/ThreadActions';
+import DetailThreadCommentInput from './DetailThreadCommentInput';
 
 // title, category, comments, createdAt, downVotesBy, id, owner, title, upVotesBy
 function DetailThreadContent({
@@ -12,8 +13,7 @@ function DetailThreadContent({
   return (
     <section className="w-[615px] max-w-[615px] rounded-lg border border-b-0 border-solid border-[#393E46]">
       <article
-        className="flex flex-col gap-3 border-b border-solid border-[#393E46]
-      p-5 pb-3 transition duration-100"
+        className="flex flex-col gap-3 p-5 pb-3"
       >
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-center">
@@ -39,6 +39,9 @@ function DetailThreadContent({
           ? <ThreadActions upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
           : null}
       </article>
+      <div className="border-b border-solid border-[#393E46] p-5 pb-3">
+        <DetailThreadCommentInput authUser={authUser} />
+      </div>
     </section>
   );
 }

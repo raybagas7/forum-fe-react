@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function DetailThreadCommentInput({ authUser }) {
   const [commentBoxFocus, setCommentBoxFocus] = useState(false);
-  console.log(authUser);
+  // console.log(authUser);
 
   return (
     <div className="relative border-t border-solid border-[#393E46] p-3">

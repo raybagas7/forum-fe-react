@@ -4,12 +4,12 @@ import { postedAt } from '../../utils';
 import DetailOwnerAvatar from './DetailOwnerAvatar';
 import ThreadActions from '../HomeComponents/ThreadActions';
 import DetailThreadCommentInput from './DetailThreadCommentInput';
+import DetailComments from './DetailComments';
 
 // title, category, comments, createdAt, downVotesBy, id, owner, title, upVotesBy
 function DetailThreadContent({
-  title, createdAt, category, body, owner, authUser, upVotesBy, downVotesBy
+  title, createdAt, category, body, owner, authUser, upVotesBy, downVotesBy, comments
 }) {
-//   console.log(id);
   return (
     <section className="w-[615px] max-w-[615px] rounded-lg border border-b-0 border-solid border-[#393E46]">
       <article
@@ -42,6 +42,17 @@ function DetailThreadContent({
       <div className="border-b border-solid border-[#393E46] p-5 pb-3">
         <DetailThreadCommentInput authUser={authUser} />
       </div>
+      <div className="p-3 border-b border-solid border-[#393E46]">
+        Comments
+        (
+        {comments.length}
+        )
+      </div>
+      {
+        comments.map((comment) => (
+          <DetailComments key={comment.id} {...comment} authUser={authUser} />
+        ))
+      }
     </section>
   );
 }

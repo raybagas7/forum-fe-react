@@ -5,7 +5,7 @@ import { Spinner } from 'flowbite-react';
 import Navigation from '../components/Navigation';
 import Categories from '../components/HomeComponents/Categories';
 import DetailThreadContent from '../components/DetailComponents/DetailThreadContent';
-import { asyncReceiveThreadDetail } from '../states/detailThread/action';
+import { asyncAddComment, asyncReceiveThreadDetail } from '../states/detailThread/action';
 
 function DetailPage() {
   const { id } = useParams();
@@ -24,10 +24,13 @@ function DetailPage() {
   const categories = threads.map((thread) => thread.category)
     .filter((value, index, array) => array.indexOf(value) === index);
 
+  const onAddComment = (content, threadId) => {
+    dispatch(asyncAddComment({ content, threadId }));
+  };
+
   // if (!detailThread) {
   //   return null;
   // }
-
   return (
     <div className="min-h-screen bg-[#222831] text-[#EEEEEE]">
       <div className="flex h-full w-full justify-between gap-5">
@@ -35,7 +38,7 @@ function DetailPage() {
         {/* <DetailThreadContent {...detailThread} authUser={authUser} /> */}
 
         {detailThread
-          ? <DetailThreadContent {...detailThread} authUser={authUser} />
+          ? <DetailThreadContent addComment={onAddComment} {...detailThread} authUser={authUser} />
           : (
             <section className="w-[615px] h-screen flex justify-center items-center max-w-[615px]">
               <Spinner

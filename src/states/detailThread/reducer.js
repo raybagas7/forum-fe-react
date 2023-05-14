@@ -6,6 +6,13 @@ function detailThreadReducer(detailThread = null, action = {}) {
       return action.payload.detailThread;
     case ActionType.CLEAR_THREAD_DETAIL:
       return null;
+    case ActionType.ADD_COMMENT:
+      return {
+        ...detailThread,
+        comments: {
+          ...detailThread.comments.concat(action.payload.comment)
+        }
+      };
     default: return detailThread;
   }
 }

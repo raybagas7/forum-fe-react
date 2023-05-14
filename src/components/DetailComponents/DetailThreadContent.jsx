@@ -8,7 +8,8 @@ import DetailComments from './DetailComments';
 
 // title, category, comments, createdAt, downVotesBy, id, owner, title, upVotesBy
 function DetailThreadContent({
-  title, createdAt, category, body, owner, authUser, upVotesBy, downVotesBy, comments
+  addComment, id, title, createdAt, category, body, owner,
+  authUser, upVotesBy, downVotesBy, comments
 }) {
   return (
     <section className="w-[615px] max-w-[615px] rounded-lg border border-b-0 border-solid border-[#393E46]">
@@ -40,7 +41,7 @@ function DetailThreadContent({
           : null}
       </article>
       <div className="border-b border-solid border-[#393E46] p-5 pb-3">
-        <DetailThreadCommentInput authUser={authUser} />
+        <DetailThreadCommentInput addComment={addComment} threadId={id} authUser={authUser} />
       </div>
       <div className="p-3 border-b border-solid border-[#393E46]">
         Comments

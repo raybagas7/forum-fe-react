@@ -5,6 +5,7 @@ const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
   ADD_THREAD: 'ADD_THREAD',
   TOGGLE_VOTE_THREAD: 'TOGGLE_VOTE_THREAD',
+  ADD_COMMENT: 'ADD_COMMENT'
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -21,7 +22,6 @@ function addThreadActionCreator(thread) {
     type: ActionType.ADD_THREAD,
     payload: {
       thread,
-
     },
   };
 }

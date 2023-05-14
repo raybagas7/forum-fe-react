@@ -6,6 +6,7 @@ import ThreadActions from '../HomeComponents/ThreadActions';
 function DetailComments({
   owner, createdAt, content, upVotesBy, downVotesBy, authUser
 }) {
+  // console.log('commentId', id);
   return (
     <article
       className="flex gap-3 p-5 pb-3 border-b border-solid border-[#393E46]"

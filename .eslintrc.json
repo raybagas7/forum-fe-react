@@ -38,6 +38,7 @@
         "required": {
           "some": [ "nesting", "id"  ]
         }
-      }]
+      }],
+    "no-param-reassign": 0
   }
 }

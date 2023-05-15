@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Spinner } from 'flowbite-react';
 import Navigation from '../components/Navigation';
-import Categories from '../components/HomeComponents/Categories';
 import DetailThreadContent from '../components/DetailComponents/DetailThreadContent';
 import { asyncAddComment, asyncReceiveThreadDetail } from '../states/detailThread/action';
+import GlobalCategories from '../components/GlobalCategories';
+import { setCategory } from '../states/chosenCategory/action';
 
 function DetailPage() {
   const { id } = useParams();
@@ -13,9 +14,14 @@ function DetailPage() {
     threads = [],
     detailThread = null,
     authUser = null,
+    chosenCategory = ''
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
+
+  const chosenCategoryHandler = (category) => {
+    dispatch(setCategory(category));
+  };
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(id));
@@ -47,7 +53,11 @@ function DetailPage() {
               />
             </section>
           )}
-        <Categories categories={categories} />
+        <GlobalCategories
+          categories={categories}
+          chosenCategory={chosenCategory}
+          chosenCategoryHandler={chosenCategoryHandler}
+        />
       </div>
     </div>
   );

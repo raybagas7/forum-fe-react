@@ -6,10 +6,12 @@ import isPreloadReducer from './isPreload/reducer';
 import authUserReducer from './authUser/reducer';
 import leaderboardsReducer from './leaderboards/reducer';
 import detailThreadReducer from './detailThread/reducer';
+import categoryReducer from './chosenCategory/reducer';
 
 const store = configureStore({
   reducer: {
     authUser: authUserReducer,
+    chosenCategory: categoryReducer,
     isPreload: isPreloadReducer,
     leaderboards: leaderboardsReducer,
     users: usersReducer,

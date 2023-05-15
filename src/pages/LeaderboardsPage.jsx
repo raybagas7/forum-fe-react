@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../components/Navigation';
-import Categories from '../components/HomeComponents/Categories';
 import LeaderboardsContainer from '../components/LeaderBoardsComponents/LeaderboardsContainer';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
+import GlobalCategories from '../components/GlobalCategories';
+import { setCategory } from '../states/chosenCategory/action';
 
 function LeaderboardsPage() {
   const {
     threads = [],
     leaderboards = [],
     authUser = null,
+    chosenCategory = '',
   } = useSelector(((states) => states));
 
   const dispatch = useDispatch();
+
+  const chosenCategoryHandler = (category) => {
+    dispatch(setCategory(category));
+  };
 
   useEffect(() => {
     dispatch(asyncReceiveLeaderboards());
@@ -26,7 +32,11 @@ function LeaderboardsPage() {
       <div className="flex h-full w-full justify-between gap-5">
         <Navigation authUser={authUser} />
         <LeaderboardsContainer leaderboards={leaderboards} />
-        <Categories categories={categories} />
+        <GlobalCategories
+          categories={categories}
+          chosenCategory={chosenCategory}
+          chosenCategoryHandler={chosenCategoryHandler}
+        />
       </div>
     </div>
   );

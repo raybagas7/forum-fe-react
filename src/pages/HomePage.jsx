@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../components/Navigation';
 import ThreadsContainer from '../components/HomeComponents/ThreadsContainer';
 import Categories from '../components/HomeComponents/Categories';
 import { asyncPopulateUsersAndTalks } from '../states/shared/action';
+import { setCategory } from '../states/chosenCategory/action';
 
 function HomePage() {
   const {
     threads = [],
     users = [],
     authUser = null,
+    chosenCategory = '',
   } = useSelector(((states) => states));
-  const [chosenCategory, setChosenCategory] = useState('');
 
   const dispatch = useDispatch();
 
   const chosenCategoryHandler = (category) => {
-    if (chosenCategory === category) {
-      setChosenCategory('');
-    } else {
-      setChosenCategory(category);
-    }
+    dispatch(setCategory(category));
   };
 
   useEffect(() => {

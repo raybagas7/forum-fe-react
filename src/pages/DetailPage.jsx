@@ -25,7 +25,7 @@ function DetailPage() {
     .filter((value, index, array) => array.indexOf(value) === index);
 
   const onAddComment = (content, threadId) => {
-    dispatch(asyncAddComment({ content, threadId }));
+    dispatch(asyncAddComment({ content, id: threadId }));
   };
 
   // if (!detailThread) {

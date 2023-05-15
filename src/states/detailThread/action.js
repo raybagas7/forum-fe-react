@@ -54,7 +54,7 @@ function asyncAddComment({ content, id }) {
     dispatch(showLoading());
 
     try {
-      const comment = await api.createComment({ content, id });
+      const comment = await api.createComment(content, id);
       dispatch(addCommentActionCreator(comment));
     } catch (error) {
       alert(error.message);

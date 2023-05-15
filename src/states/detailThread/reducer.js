@@ -9,9 +9,8 @@ function detailThreadReducer(detailThread = null, action = {}) {
     case ActionType.ADD_COMMENT:
       return {
         ...detailThread,
-        comments: {
-          ...detailThread.comments.concat(action.payload.comment)
-        }
+        comments: [action.payload.comment].concat(detailThread.comments)
+
       };
     default: return detailThread;
   }

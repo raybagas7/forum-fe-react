@@ -4,8 +4,8 @@ import api from '../../utils/api';
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
   ADD_THREAD: 'ADD_THREAD',
-  TOGGLE_VOTE_THREAD: 'TOGGLE_VOTE_THREAD',
-  ADD_COMMENT: 'ADD_COMMENT'
+  VOTE_THREAD: 'VOTE_THREAD',
+  ADD_COMMENT: 'ADD_COMMENT',
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -26,6 +26,16 @@ function addThreadActionCreator(thread) {
   };
 }
 
+function likeThreadActionCreator({ threadId, userId }) {
+  return {
+    type: ActionType.VOTE_THREAD,
+    payload: {
+      threadId,
+      userId,
+    },
+  };
+}
+
 function asyncAddThread({ title, body, category = null }) {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -41,9 +51,31 @@ function asyncAddThread({ title, body, category = null }) {
   };
 }
 
+function asyncUpVoteThread(threadId, netral) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { authUser } = getState();
+    dispatch(likeThreadActionCreator({ threadId, userId: authUser.id }));
+    try {
+      if (netral) {
+        await api.neutralVoteThread(threadId);
+      } else {
+        await api.upVoteThread(threadId);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
+
 export {
   ActionType,
   receiveThreadsActionCreator,
+  likeThreadActionCreator,
   addThreadActionCreator,
   asyncAddThread,
+  asyncUpVoteThread,
 };

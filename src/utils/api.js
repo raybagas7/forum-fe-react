@@ -39,7 +39,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { user } } = responseJson;
+    const {
+      data: { user },
+    } = responseJson;
 
     return user;
   }
@@ -64,7 +66,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { token } } = responseJson;
+    const {
+      data: { token },
+    } = responseJson;
 
     return token;
   }
@@ -80,7 +84,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { users } } = responseJson;
+    const {
+      data: { users },
+    } = responseJson;
 
     return users;
   }
@@ -96,7 +102,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { user } } = responseJson;
+    const {
+      data: { user },
+    } = responseJson;
 
     return user;
   }
@@ -110,7 +118,7 @@ const api = (() => {
       body: JSON.stringify({
         title,
         body,
-        category
+        category,
       }),
     });
 
@@ -122,7 +130,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { thread } } = responseJson;
+    const {
+      data: { thread },
+    } = responseJson;
 
     return thread;
   }
@@ -138,7 +148,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { threads } } = responseJson;
+    const {
+      data: { threads },
+    } = responseJson;
 
     return threads;
   }
@@ -154,7 +166,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { leaderboards } } = responseJson;
+    const {
+      data: { leaderboards },
+    } = responseJson;
 
     return leaderboards;
   }
@@ -170,7 +184,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { detailThread } } = responseJson;
+    const {
+      data: { detailThread },
+    } = responseJson;
 
     return detailThread;
   }
@@ -196,15 +212,18 @@ const api = (() => {
   }
 
   async function createComment({ content, id }) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/comments`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        content
-      }),
-    });
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${id}/comments`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content,
+        }),
+      }
+    );
 
     const responseJson = await response.json();
 
@@ -214,9 +233,68 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { comment } } = responseJson;
+    const {
+      data: { comment },
+    } = responseJson;
 
     return comment;
+  }
+
+  async function upVoteThread(id) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/up-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+  }
+
+  async function downVoteThread(id) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${id}/down-vote`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+  }
+
+  async function neutralVoteThread(id) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${id}/neutral-vote`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
   }
 
   return {
@@ -231,7 +309,10 @@ const api = (() => {
     toggleLikeTalk,
     seeThreadDetail,
     seeLeaderboards,
-    createComment
+    createComment,
+    upVoteThread,
+    downVoteThread,
+    neutralVoteThread,
   };
 })();
 

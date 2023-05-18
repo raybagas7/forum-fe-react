@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import ThreadInput from './ThreadInput';
-import ThreadsList from './ThreadsList';
 import { asyncAddThread, asyncDownVoteThread, asyncUpVoteThread } from '../../states/threads/action';
+import ThreadsContent from './ThreadsContent';
+import shape from '../../utils/varshape';
 
 function ThreadsContainer({ threads, authUser }) {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function ThreadsContainer({ threads, authUser }) {
     }
 
       {threads.map((thread) => (
-        <ThreadsList
+        <ThreadsContent
           key={thread.id}
           {...thread}
           authUser={authUser}
@@ -39,5 +41,14 @@ function ThreadsContainer({ threads, authUser }) {
     </section>
   );
 }
+
+ThreadsContainer.propTypes = {
+  threads: PropTypes.arrayOf(PropTypes.shape(shape.threadItemShape)).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape)
+};
+
+ThreadsContainer.defaultProps = {
+  authUser: null,
+};
 
 export default ThreadsContainer;

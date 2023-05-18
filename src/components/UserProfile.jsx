@@ -1,22 +1,11 @@
 import { Avatar, Tooltip } from 'flowbite-react';
 import React from 'react';
 import { SlOptions } from 'react-icons/sl';
-// import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-// import Popover from 'react-bootstrap/Popover';
+import PropTypes from 'prop-types';
 
-// const popover = (
-//   <Popover
-//     id="popover-basic"
-//     className="flex h-16 w-64 items-center rounded-md
-//   bg-[#222831] text-white shadow-behind shadow-white/20"
-//   >
-//     <Popover.Body className="w-full cursor-pointer p-2 pl-3 hover:bg-white/20">
-//       Logout @Id
-//     </Popover.Body>
-//   </Popover>
-// );
-
-function UserProfile({ logout, authUser }) {
+function UserProfile({
+  logout, email, avatar, name
+}) {
   const content1 = (
     <button
       type="button"
@@ -25,7 +14,7 @@ function UserProfile({ logout, authUser }) {
     >
       Logout
       {' '}
-      {authUser.email}
+      {email}
     </button>
   );
   return (
@@ -43,15 +32,15 @@ function UserProfile({ logout, authUser }) {
         >
           <div className="flex gap-3">
             <Avatar
-              img={authUser.avatar}
+              img={avatar}
               placeholderInitials="PP"
               size="md"
               rounded
             />
             <div className="flex flex-col">
-              <div className="text-left"><span>{authUser.name}</span></div>
+              <div className="text-left"><span>{name}</span></div>
               <div className="text-grey-500 text-left text-[#858a91]">
-                <span>{authUser.email}</span>
+                <span>{email}</span>
               </div>
             </div>
           </div>
@@ -61,5 +50,12 @@ function UserProfile({ logout, authUser }) {
     </div>
   );
 }
+
+UserProfile.propTypes = {
+  logout: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+};
 
 export default UserProfile;

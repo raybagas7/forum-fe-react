@@ -10,21 +10,6 @@ import {
 function ThreadActions({
   threadId, commentId, upVotesBy, downVotesBy, onUpVote, onDownVote, userId
 }) {
-  // const onUpVoteCommentClick = (e) => {
-  //   e.preventDefault();
-  //   onUpVoteComment(id, upVotesBy);
-  // };
-
-  // const ondownVoteCommentClick = (e) => {
-  //   e.preventDefault();
-  //   onDownVoteComment(id, downVotesBy);
-  // };
-
-  // function handleChildClick(e) {
-  //   e.preventDefault();
-  //   // console.log('child');
-  // }
-
   const onUpVoteClick = (e) => {
     e.preventDefault();
     if (commentId) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from 'flowbite-react';
+import PropTypes from 'prop-types';
 
 function ThreadInput({ avatar, addThread }) {
   const [title, setTitle] = useState('');
@@ -84,5 +85,10 @@ function ThreadInput({ avatar, addThread }) {
     </div>
   );
 }
+
+ThreadInput.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  addThread: PropTypes.func.isRequired
+};
 
 export default ThreadInput;

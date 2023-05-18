@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 
@@ -22,5 +23,10 @@ function AuthenticationContainer({ login, signup }) {
     </div>
   );
 }
+
+AuthenticationContainer.propTypes = {
+  login: PropTypes.func.isRequired,
+  signup: PropTypes.func.isRequired,
+};
 
 export default AuthenticationContainer;

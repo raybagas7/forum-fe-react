@@ -3,6 +3,7 @@ import {
   Label, TextInput
 } from 'flowbite-react';
 import { GiFire } from 'react-icons/gi';
+import PropTypes from 'prop-types';
 import useInput from '../../hooks/useInput';
 
 function SignupForm({ signup }) {
@@ -80,5 +81,9 @@ function SignupForm({ signup }) {
     </div>
   );
 }
+
+SignupForm.propTypes = {
+  signup: PropTypes.func.isRequired
+};
 
 export default SignupForm;

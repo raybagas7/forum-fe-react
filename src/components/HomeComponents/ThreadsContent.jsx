@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Avatar } from 'flowbite-react';
+import PropTypes from 'prop-types';
 import ThreadActions from './ThreadActions';
-import ThreadOwner from './ThreadOwner';
 import { postedAt } from '../../utils';
+import shape from '../../utils/varshape';
 
-// AiFillDislike, AiFillLike
-// upVotesBy, downVotesBy, totalComments, ownerId
-function ThreadsList({
+function ThreadsContent({
   id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser, onUpVote, onDownVote
 }) {
   return (
@@ -17,7 +17,12 @@ function ThreadsList({
       >
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-center">
-            <ThreadOwner owner={user.avatar} />
+            <Avatar
+              img={user.avatar}
+              placeholderInitials="PP"
+              size="md"
+              rounded
+            />
             <div>
               <div className="text-sm">
                 <span className="text-[#00ADB5] after:m-1 after:text-[#858a91] after:content-['·']">
@@ -55,4 +60,18 @@ function ThreadsList({
   );
 }
 
-export default ThreadsList;
+ThreadsContent.propTypes = {
+  id: PropTypes.string.isRequired,
+  user: PropTypes.shape(shape.authUserShape).isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape).isRequired,
+  onUpVote: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
+};
+
+export default ThreadsContent;

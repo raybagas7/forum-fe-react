@@ -4,7 +4,7 @@ function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
   const onClickCategory = () => {
     chosenCategoryHandler(category);
   };
-  // console.log(chosenCategoryHandler);
+
   return (
     <div>
       {category === chosenCategory

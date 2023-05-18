@@ -7,7 +7,7 @@ function GlobalCategories({ categories, chosenCategory, chosenCategoryHandler })
       <div className="fixed mt-5 w-[400px]">
         <div className="rounded-xl bg-[#393E46] p-5">
           <h2 className="mb-4 text-xl">Kategori Popular</h2>
-          <div className="flex mb-1 flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1">
             {categories.map((category) => (
               <GlobalCategoryItem
                 key={category}

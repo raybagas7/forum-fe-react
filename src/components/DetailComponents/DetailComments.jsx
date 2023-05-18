@@ -1,5 +1,5 @@
 import React from 'react';
-import DetailOwnerAvatar from './DetailOwnerAvatar';
+import { Avatar } from 'flowbite-react';
 import { postedAt } from '../../utils';
 import ThreadActions from '../HomeComponents/ThreadActions';
 
@@ -21,7 +21,11 @@ function DetailComments({
     <article
       className="flex gap-3 p-5 pb-3 border-b border-solid border-[#393E46]"
     >
-      <DetailOwnerAvatar avatar={owner.avatar} />
+      <Avatar
+        img={owner.avatar}
+        size="md"
+        rounded
+      />
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex gap-3 items-center">
           <div>

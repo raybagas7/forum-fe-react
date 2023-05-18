@@ -4,17 +4,16 @@ import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { MdLeaderboard, MdOutlineLeaderboard } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserProfile from './UserProfile';
 import AuthenticationContainer from './AuthenticationComponents/AuthenticationContainer';
 import { asyncSetAuthUser, asyncUnsetAuthUser } from '../states/authUser/action';
-// import { asyncRegisterUser } from '../states/users/action';
 import { asyncAutoLoginAfterSignup } from '../states/shared/action';
 import { clearCategory } from '../states/chosenCategory/action';
 
 function Navigation({ authUser }) {
   const param = useLocation();
   const activeNav = param.pathname;
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onLogin = ({ email, password }) => {
@@ -32,14 +31,6 @@ function Navigation({ authUser }) {
   const onHomeClick = () => {
     dispatch(clearCategory());
   };
-
-  // const onClickHome = () => {
-  //   navigate('/');
-  // };
-
-  // const onClickLeaderboards = () => {
-  //   navigate('/leaderboards');
-  // };
 
   return (
     <>
@@ -71,7 +62,7 @@ function Navigation({ authUser }) {
               </nav>
             </div>
             {authUser
-              ? <UserProfile logout={onLogout} authUser={authUser} />
+              ? <UserProfile logout={onLogout} {...authUser} />
               : null}
 
           </div>
@@ -84,5 +75,20 @@ function Navigation({ authUser }) {
     </>
   );
 }
+
+const authUserShape = {
+  id: PropTypes.string,
+  avatar: PropTypes.string,
+  email: PropTypes.string,
+  name: PropTypes.string,
+
+};
+Navigation.propTypes = {
+  authUser: PropTypes.shape(authUserShape)
+};
+
+Navigation.defaultProps = {
+  authUser: null,
+};
 
 export default Navigation;

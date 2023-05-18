@@ -1,9 +1,9 @@
 import React from 'react';
-// import { GiFire } from 'react-icons/gi';
 import {
   Label, TextInput
 } from 'flowbite-react';
 import { GiFire } from 'react-icons/gi';
+import PropTypes from 'prop-types';
 import useInput from '../../hooks/useInput';
 
 function LoginForm({ login }) {
@@ -63,5 +63,9 @@ function LoginForm({ login }) {
     </div>
   );
 }
+
+LoginForm.propTypes = {
+  login: PropTypes.func.isRequired
+};
 
 export default LoginForm;

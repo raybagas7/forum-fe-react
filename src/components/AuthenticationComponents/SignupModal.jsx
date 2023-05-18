@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import { GiFire } from 'react-icons/gi';
 import {
   Modal,
 } from 'flowbite-react';
+import PropTypes from 'prop-types';
 import SignupForm from './SignupForm';
 
 function SignupModal({ signup }) {
@@ -34,5 +34,9 @@ function SignupModal({ signup }) {
     </>
   );
 }
+
+SignupModal.propTypes = {
+  signup: PropTypes.func.isRequired
+};
 
 export default SignupModal;

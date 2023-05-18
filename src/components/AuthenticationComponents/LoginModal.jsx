@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { GiFire } from 'react-icons/gi';
+import PropTypes from 'prop-types';
 import {
   Modal,
 } from 'flowbite-react';
@@ -34,5 +34,9 @@ function LoginModal({ login }) {
     </>
   );
 }
+
+LoginModal.propTypes = {
+  login: PropTypes.func.isRequired
+};
 
 export default LoginModal;

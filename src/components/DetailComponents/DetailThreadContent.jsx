@@ -1,8 +1,8 @@
 import React from 'react';
 // import ThreadActions from '../HomeComponents/ThreadActions';
 import { useDispatch } from 'react-redux';
+import { Avatar } from 'flowbite-react';
 import { postedAt } from '../../utils';
-import DetailOwnerAvatar from './DetailOwnerAvatar';
 import ThreadActions from '../HomeComponents/ThreadActions';
 import DetailThreadCommentInput from './DetailThreadCommentInput';
 import DetailComments from './DetailComments';
@@ -39,7 +39,11 @@ function DetailThreadContent({
       >
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-center">
-            <DetailOwnerAvatar avatar={owner.avatar} />
+            <Avatar
+              img={owner.avatar}
+              size="md"
+              rounded
+            />
             <div>
               <div className="text-sm">
                 <span className="text-[#00ADB5] after:m-1 after:text-[#858a91] after:content-['·']">

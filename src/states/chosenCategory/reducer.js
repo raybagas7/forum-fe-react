@@ -5,6 +5,8 @@ function categoryReducer(chosenCategory = '', action = {}) {
     case ActionType.SET_CATEGORY:
       return chosenCategory === action.payload.chosenCategory
         ? '' : action.payload.chosenCategory;
+    case ActionType.CLEAR_CATEGORY:
+      return action.payload.chosenCategory;
     default:
       return chosenCategory;
   }

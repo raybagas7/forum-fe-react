@@ -4,8 +4,11 @@ import api from '../../utils/api';
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
-  TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
-  ADD_COMMENT: 'ADD_COMMENT'
+  ADD_COMMENT: 'ADD_COMMENT',
+  UP_VOTE_THREAD_DETAIL: 'UP_VOTE_THREAD_DETAIL',
+  DOWN_VOTE_THREAD_DETAIL: 'DOWN_VOTE_THREAD_DETAIL',
+  UP_VOTE_COMMENT_DETAIL: 'UP_VOTE_COMMENT_DETAIL',
+  DOWN_VOTE_COMMENT_DETAIL: 'DOWN_VOTE_COMMENT_DETAIL',
 };
 
 function receiveThreadDetailActionCreator(detailThread) {
@@ -29,6 +32,46 @@ function addCommentActionCreator(comment) {
     payload: {
       comment
     }
+  };
+}
+
+function upVoteDetailThreadActionCreator({ threadId, userId }) {
+  return {
+    type: ActionType.UP_VOTE_THREAD_DETAIL,
+    payload: {
+      threadId,
+      userId,
+    },
+  };
+}
+
+function downVoteDetailThreadActionCreator({ threadId, userId }) {
+  return {
+    type: ActionType.DOWN_VOTE_THREAD_DETAIL,
+    payload: {
+      threadId,
+      userId,
+    },
+  };
+}
+
+function upVoteDetailCommentActionCreator({ commentId, userId }) {
+  return {
+    type: ActionType.UP_VOTE_COMMENT_DETAIL,
+    payload: {
+      commentId,
+      userId,
+    },
+  };
+}
+
+function downVoteDetailCommentActionCreator({ commentId, userId }) {
+  return {
+    type: ActionType.DOWN_VOTE_COMMENT_DETAIL,
+    payload: {
+      commentId,
+      userId,
+    },
   };
 }
 
@@ -64,20 +107,99 @@ function asyncAddComment({ content, id }) {
   };
 }
 
-// function toggleLikeTalkDetailActionCreator(userId) {
-//   return {
-//     type: ActionType.TOGGLE_LIKE_THREAD_DETAIL,
-//     payload: {
-//       userId,
-//     },
-//   };
-// }
+function asyncUpVoteDetailThread(threadId, upVoteBy) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { authUser } = getState();
+    dispatch(upVoteDetailThreadActionCreator({ threadId, userId: authUser.id }));
+    try {
+      if (upVoteBy.includes(authUser.id)) {
+        await api.neutralVoteThread(threadId);
+      } else {
+        await api.upVoteThread(threadId);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
+
+function asyncDownVoteDetailThread(threadId, downVoteBy) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { authUser } = getState();
+    dispatch(downVoteDetailThreadActionCreator({ threadId, userId: authUser.id }));
+    try {
+      if (downVoteBy.includes(authUser.id)) {
+        await api.neutralVoteThread(threadId);
+      } else {
+        await api.downVoteThread(threadId);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
+
+function asyncUpVoteComment(threadId, commentId, upVoteBy) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { authUser } = getState();
+    dispatch(upVoteDetailCommentActionCreator({ commentId, userId: authUser.id }));
+    try {
+      if (upVoteBy.includes(authUser.id)) {
+        await api.neutralVoteComment(threadId, commentId);
+      } else {
+        await api.upVoteComment(threadId, commentId);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
+
+function asyncDownVoteComment(threadId, commentId, downVoteBy) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    const { authUser } = getState();
+    dispatch(downVoteDetailCommentActionCreator({ commentId, userId: authUser.id }));
+    try {
+      if (downVoteBy.includes(authUser.id)) {
+        await api.neutralVoteComment(threadId, commentId);
+      } else {
+        await api.downVoteComment(threadId, commentId);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
 
 export {
   ActionType,
   receiveThreadDetailActionCreator,
   clearThreadDetailActionCreator,
   addCommentActionCreator,
+  upVoteDetailThreadActionCreator,
+  downVoteDetailThreadActionCreator,
+  upVoteDetailCommentActionCreator,
+  downVoteDetailCommentActionCreator,
   asyncReceiveThreadDetail,
-  asyncAddComment
+  asyncAddComment,
+  asyncUpVoteDetailThread,
+  asyncDownVoteDetailThread,
+  asyncUpVoteComment,
+  asyncDownVoteComment
 };

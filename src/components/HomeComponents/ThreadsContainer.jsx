@@ -2,15 +2,21 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import ThreadInput from './ThreadInput';
 import ThreadsList from './ThreadsList';
-import { asyncAddThread } from '../../states/threads/action';
+import { asyncAddThread, asyncDownVoteThread, asyncUpVoteThread } from '../../states/threads/action';
 
 function ThreadsContainer({ threads, authUser }) {
-  // console.log(threads);
-
   const dispatch = useDispatch();
 
   const onAddThread = ({ title, category, body }) => {
     dispatch(asyncAddThread({ title, category, body }));
+  };
+
+  const onUpVote = (id, voteBy) => {
+    dispatch(asyncUpVoteThread(id, voteBy));
+  };
+
+  const onDownVote = (id, voteBy) => {
+    dispatch(asyncDownVoteThread(id, voteBy));
   };
 
   return (
@@ -22,7 +28,13 @@ function ThreadsContainer({ threads, authUser }) {
     }
 
       {threads.map((thread) => (
-        <ThreadsList key={thread.id} {...thread} authUser={authUser} />
+        <ThreadsList
+          key={thread.id}
+          {...thread}
+          authUser={authUser}
+          onUpVote={onUpVote}
+          onDownVote={onDownVote}
+        />
       ))}
     </section>
   );

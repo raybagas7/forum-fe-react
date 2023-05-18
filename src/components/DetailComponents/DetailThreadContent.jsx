@@ -1,16 +1,37 @@
 import React from 'react';
 // import ThreadActions from '../HomeComponents/ThreadActions';
+import { useDispatch } from 'react-redux';
 import { postedAt } from '../../utils';
 import DetailOwnerAvatar from './DetailOwnerAvatar';
 import ThreadActions from '../HomeComponents/ThreadActions';
 import DetailThreadCommentInput from './DetailThreadCommentInput';
 import DetailComments from './DetailComments';
+import {
+  asyncDownVoteComment, asyncDownVoteDetailThread, asyncUpVoteComment, asyncUpVoteDetailThread
+} from '../../states/detailThread/action';
 
 // title, category, comments, createdAt, downVotesBy, id, owner, title, upVotesBy
 function DetailThreadContent({
   addComment, id, title, createdAt, category, body, owner,
   authUser, upVotesBy, downVotesBy, comments
 }) {
+  const dispatch = useDispatch();
+
+  const onUpVote = (threadid, voteBy) => {
+    dispatch(asyncUpVoteDetailThread(threadid, voteBy));
+  };
+
+  const onDownVote = (threadid, voteBy) => {
+    dispatch(asyncDownVoteDetailThread(threadid, voteBy));
+  };
+
+  const onUpVoteComment = (threadId, commentId, voteBy) => {
+    dispatch(asyncUpVoteComment(threadId, commentId, voteBy));
+  };
+
+  const onDownVoteComment = (threadId, commentId, voteBy) => {
+    dispatch(asyncDownVoteComment(threadId, commentId, voteBy));
+  };
   return (
     <section className="w-[615px] max-w-[615px] rounded-lg border border-b-0 border-solid border-[#393E46]">
       <article
@@ -37,11 +58,22 @@ function DetailThreadContent({
           <div className="a line-clamp-6" dangerouslySetInnerHTML={{ __html: body }} />
         </article>
         {authUser
-          ? <ThreadActions upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
+          ? (
+            <ThreadActions
+              threadId={id}
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+              onUpVote={onUpVote}
+              onDownVote={onDownVote}
+              userId={authUser.id}
+            />
+          )
           : null}
       </article>
       <div className="border-b border-solid border-[#393E46] p-5 pb-3">
-        <DetailThreadCommentInput addComment={addComment} threadId={id} authUser={authUser} />
+        {authUser
+          ? <DetailThreadCommentInput addComment={addComment} threadId={id} authUser={authUser} />
+          : null}
       </div>
       <div className="p-3 border-b border-solid border-[#393E46]">
         Comments
@@ -51,7 +83,14 @@ function DetailThreadContent({
       </div>
       {
         comments.map((comment) => (
-          <DetailComments key={comment.id} {...comment} authUser={authUser} />
+          <DetailComments
+            key={comment.id}
+            threadId={id}
+            {...comment}
+            authUser={authUser}
+            onUpVoteComment={onUpVoteComment}
+            onDownVoteComment={onDownVoteComment}
+          />
         ))
       }
     </section>

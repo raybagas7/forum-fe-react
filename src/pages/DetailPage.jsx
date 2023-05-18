@@ -44,7 +44,13 @@ function DetailPage() {
         {/* <DetailThreadContent {...detailThread} authUser={authUser} /> */}
 
         {detailThread
-          ? <DetailThreadContent addComment={onAddComment} {...detailThread} authUser={authUser} />
+          ? (
+            <DetailThreadContent
+              addComment={onAddComment}
+              {...detailThread}
+              authUser={authUser}
+            />
+          )
           : (
             <section className="w-[615px] h-screen flex justify-center items-center max-w-[615px]">
               <Spinner

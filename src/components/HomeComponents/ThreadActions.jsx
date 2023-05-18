@@ -1,35 +1,72 @@
 import React from 'react';
 import {
   AiOutlineLike,
+  AiFillLike,
   AiOutlineDislike,
+  AiFillDislike,
   AiOutlineShareAlt,
 } from 'react-icons/ai';
 
-function ThreadActions({ upVotesBy, downVotesBy }) {
-  function handleChildClick(e) {
+function ThreadActions({
+  threadId, commentId, upVotesBy, downVotesBy, onUpVote, onDownVote, userId
+}) {
+  // const onUpVoteCommentClick = (e) => {
+  //   e.preventDefault();
+  //   onUpVoteComment(id, upVotesBy);
+  // };
+
+  // const ondownVoteCommentClick = (e) => {
+  //   e.preventDefault();
+  //   onDownVoteComment(id, downVotesBy);
+  // };
+
+  // function handleChildClick(e) {
+  //   e.preventDefault();
+  //   // console.log('child');
+  // }
+
+  const onUpVoteClick = (e) => {
     e.preventDefault();
-    // console.log('child');
-  }
+    if (commentId) {
+      onUpVote(threadId, commentId, upVotesBy);
+    } else {
+      onUpVote(threadId, upVotesBy);
+    }
+  };
+
+  const ondownVoteClick = (e) => {
+    e.preventDefault();
+    if (commentId) {
+      onDownVote(threadId, commentId, downVotesBy);
+    } else {
+      onDownVote(threadId, downVotesBy);
+    }
+  };
+
   return (
     <div className="relative flex gap-3">
       <div className="flex rounded-full bg-white/10">
         <button
           type="button"
-          onClick={handleChildClick}
+          onClick={onUpVoteClick}
           className="cursor-pointer rounded-l-full p-2 pl-3 pr-0 transition duration-100 hover:bg-white/20"
         >
           <div className="flex items-center justify-center gap-1 border-r border-solid border-white/30 pr-2 text-xs">
-            <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" />
+            {upVotesBy.includes(userId)
+              ? <AiFillLike className="h-5 w-5 text-[#EEEEEE]" />
+              : <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" />}
             <span>{upVotesBy.length}</span>
           </div>
         </button>
         <button
           type="button"
-          onClick={handleChildClick}
+          onClick={ondownVoteClick}
           className="cursor-pointer rounded-r-full p-2 pr-3 transition duration-100 hover:bg-white/20"
         >
           <div className="flex items-center justify-center gap-1 text-xs">
-            <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" />
+            {downVotesBy.includes(userId)
+              ? <AiFillDislike className="h-5 w-5 text-[#EEEEEE]" />
+              : <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" />}
             <span>{downVotesBy.length}</span>
           </div>
         </button>

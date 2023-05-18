@@ -9,6 +9,7 @@ import AuthenticationContainer from './AuthenticationComponents/AuthenticationCo
 import { asyncSetAuthUser, asyncUnsetAuthUser } from '../states/authUser/action';
 // import { asyncRegisterUser } from '../states/users/action';
 import { asyncAutoLoginAfterSignup } from '../states/shared/action';
+import { clearCategory } from '../states/chosenCategory/action';
 
 function Navigation({ authUser }) {
   const param = useLocation();
@@ -26,6 +27,10 @@ function Navigation({ authUser }) {
 
   const onSignup = ({ name, email, password }) => {
     dispatch(asyncAutoLoginAfterSignup({ name, email, password }));
+  };
+
+  const onHomeClick = () => {
+    dispatch(clearCategory());
   };
 
   // const onClickHome = () => {
@@ -48,6 +53,7 @@ function Navigation({ authUser }) {
               <nav>
                 <ul className="flex flex-col gap-3 text-xl">
                   <Link
+                    onClick={onHomeClick}
                     to="/"
                     className="flex w-fit cursor-pointer items-center gap-5 rounded-full p-2 transition duration-100 hover:bg-white/10"
                   >

@@ -4,9 +4,19 @@ import { postedAt } from '../../utils';
 import ThreadActions from '../HomeComponents/ThreadActions';
 
 function DetailComments({
-  owner, createdAt, content, upVotesBy, downVotesBy, authUser
+  threadId,
+  id,
+  owner,
+  createdAt,
+  content,
+  upVotesBy,
+  downVotesBy,
+  authUser,
+  onUpVoteComment,
+  onDownVoteComment
 }) {
   // console.log('commentId', id);
+
   return (
     <article
       className="flex gap-3 p-5 pb-3 border-b border-solid border-[#393E46]"
@@ -27,7 +37,17 @@ function DetailComments({
           <div className="a line-clamp-6" dangerouslySetInnerHTML={{ __html: content }} />
         </article>
         {authUser
-          ? <ThreadActions upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
+          ? (
+            <ThreadActions
+              threadId={threadId}
+              commentId={id}
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+              onUpVote={onUpVoteComment}
+              onDownVote={onDownVoteComment}
+              userId={authUser.id}
+            />
+          )
           : null}
       </div>
 

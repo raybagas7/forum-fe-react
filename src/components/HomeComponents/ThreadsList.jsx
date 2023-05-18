@@ -7,7 +7,7 @@ import { postedAt } from '../../utils';
 // AiFillDislike, AiFillLike
 // upVotesBy, downVotesBy, totalComments, ownerId
 function ThreadsList({
-  id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser
+  id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser, onUpVote, onDownVote
 }) {
   return (
     <Link to={`/threads/${id}`}>
@@ -39,7 +39,16 @@ function ThreadsList({
           <div className="a line-clamp-6" dangerouslySetInnerHTML={{ __html: body }} />
         </article>
         {authUser
-          ? <ThreadActions upVotesBy={upVotesBy} downVotesBy={downVotesBy} />
+          ? (
+            <ThreadActions
+              userId={authUser.id}
+              threadId={id}
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+              onUpVote={onUpVote}
+              onDownVote={onDownVote}
+            />
+          )
           : null}
       </article>
     </Link>

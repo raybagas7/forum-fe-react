@@ -8,7 +8,18 @@ import shape from '../../utils/varshape';
 import GlobalVoteCount from '../GlobalVoteCount';
 
 function ThreadsContent({
-  id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser, onUpVote, onDownVote
+  id,
+  user,
+  title,
+  body,
+  category,
+  createdAt,
+  upVotesBy,
+  downVotesBy,
+  authUser,
+  onUpVote,
+  onDownVote,
+  totalComments
 }) {
   return (
     <Link to={`/threads/${id}`}>
@@ -53,12 +64,15 @@ function ThreadsContent({
               downVotesBy={downVotesBy}
               onUpVote={onUpVote}
               onDownVote={onDownVote}
+              totalComments={totalComments}
             />
           )
           : (
             <GlobalVoteCount
               upVotesBy={upVotesBy}
               downVotesBy={downVotesBy}
+              totalComments={totalComments}
+
             />
           )}
       </article>

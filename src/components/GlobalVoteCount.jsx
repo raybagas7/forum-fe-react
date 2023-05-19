@@ -5,9 +5,10 @@ import {
   AiOutlineShareAlt,
 } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { FaRegComments } from 'react-icons/fa';
 
 function GlobalVoteCount({
-  upVotesBy, downVotesBy
+  upVotesBy, downVotesBy, totalComments
 }) {
   const onUpVoteClick = (e) => {
     e.preventDefault();
@@ -44,9 +45,21 @@ function GlobalVoteCount({
           </div>
         </button>
       </div>
-      <div className="absolute right-0 flex cursor-pointer items-center justify-center gap-1 rounded-full bg-white/10 p-2 pl-3 pr-3 text-xs transition duration-100 hover:bg-white/20">
-        <AiOutlineShareAlt className="h-5 w-5 text-[#EEEEEE]" />
-        <span>Share</span>
+      <div className="absolute right-0 flex gap-2">
+        {totalComments ? (
+          <div className="flex cursor-pointer items-center justify-center gap-1
+      rounded-full bg-white/10 p-2 pl-3 pr-3 text-xs transition duration-100 hover:bg-white/20"
+          >
+            <FaRegComments className="h-5 w-5 text-[#EEEEEE]" />
+            <span>{totalComments}</span>
+          </div>
+        ) : null}
+        <div className="flex cursor-pointer items-center justify-center gap-1
+      rounded-full bg-white/10 p-2 pl-3 pr-3 text-xs transition duration-100 hover:bg-white/20"
+        >
+          <AiOutlineShareAlt className="h-5 w-5 text-[#EEEEEE]" />
+          <span>Share</span>
+        </div>
       </div>
     </div>
   );

@@ -75,9 +75,13 @@ DetailComments.propTypes = {
   content: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  authUser: PropTypes.shape(shape.authUserShape).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape),
   onUpVoteComment: PropTypes.func.isRequired,
   onDownVoteComment: PropTypes.func.isRequired
+};
+
+DetailComments.defaultProps = {
+  authUser: null
 };
 
 export default DetailComments;

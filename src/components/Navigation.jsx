@@ -10,6 +10,7 @@ import AuthenticationContainer from './AuthenticationComponents/AuthenticationCo
 import { asyncSetAuthUser, asyncUnsetAuthUser } from '../states/authUser/action';
 import { asyncAutoLoginAfterSignup } from '../states/shared/action';
 import { clearCategory } from '../states/chosenCategory/action';
+import shape from '../utils/varshape';
 
 function Navigation({ authUser }) {
   const param = useLocation();
@@ -76,15 +77,8 @@ function Navigation({ authUser }) {
   );
 }
 
-const authUserShape = {
-  id: PropTypes.string,
-  avatar: PropTypes.string,
-  email: PropTypes.string,
-  name: PropTypes.string,
-
-};
 Navigation.propTypes = {
-  authUser: PropTypes.shape(authUserShape)
+  authUser: PropTypes.shape(shape.authUserShape)
 };
 
 Navigation.defaultProps = {

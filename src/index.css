@@ -11,5 +11,5 @@ body {
   content: attr(placeholder);
   pointer-events: none;
   color: #858a91;
-  display: block; /* For Firefox */
+  display: block;
 }

@@ -1,32 +1,22 @@
 import React from 'react';
 import {
   AiOutlineLike,
-  AiFillLike,
   AiOutlineDislike,
-  AiFillDislike,
   AiOutlineShareAlt,
 } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
-function ThreadActions({
-  threadId, commentId, upVotesBy, downVotesBy, onUpVote, onDownVote, userId
+function GlobalVoteCount({
+  upVotesBy, downVotesBy
 }) {
   const onUpVoteClick = (e) => {
     e.preventDefault();
-    if (commentId) {
-      onUpVote(threadId, commentId, upVotesBy);
-    } else {
-      onUpVote(threadId, upVotesBy);
-    }
+    alert('Login First');
   };
 
   const ondownVoteClick = (e) => {
     e.preventDefault();
-    if (commentId) {
-      onDownVote(threadId, commentId, downVotesBy);
-    } else {
-      onDownVote(threadId, downVotesBy);
-    }
+    alert('Login First');
   };
 
   return (
@@ -38,9 +28,8 @@ function ThreadActions({
           className="cursor-pointer rounded-l-full p-2 pl-3 pr-0 transition duration-100 hover:bg-white/20"
         >
           <div className="flex items-center justify-center gap-1 border-r border-solid border-white/30 pr-2 text-xs">
-            {upVotesBy.includes(userId)
-              ? <AiFillLike className="h-5 w-5 text-[#EEEEEE]" />
-              : <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" />}
+
+            <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" />
             <span>{upVotesBy.length}</span>
           </div>
         </button>
@@ -50,9 +39,7 @@ function ThreadActions({
           className="cursor-pointer rounded-r-full p-2 pr-3 transition duration-100 hover:bg-white/20"
         >
           <div className="flex items-center justify-center gap-1 text-xs">
-            {downVotesBy.includes(userId)
-              ? <AiFillDislike className="h-5 w-5 text-[#EEEEEE]" />
-              : <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" />}
+            <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" />
             <span>{downVotesBy.length}</span>
           </div>
         </button>
@@ -65,18 +52,9 @@ function ThreadActions({
   );
 }
 
-ThreadActions.propTypes = {
-  threadId: PropTypes.string.isRequired,
-  commentId: PropTypes.string,
+GlobalVoteCount.propTypes = {
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onUpVote: PropTypes.func.isRequired,
-  onDownVote: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired
 };
 
-ThreadActions.defaultProps = {
-  commentId: null,
-};
-
-export default ThreadActions;
+export default GlobalVoteCount;

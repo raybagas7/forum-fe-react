@@ -1,5 +1,7 @@
 import { Avatar } from 'flowbite-react';
 import React from 'react';
+import PropTypes from 'prop-types';
+import shape from '../../utils/varshape';
 
 function LeaderboardsContainer({ leaderboards }) {
   return (
@@ -33,5 +35,9 @@ function LeaderboardsContainer({ leaderboards }) {
     </div>
   );
 }
+
+LeaderboardsContainer.propTypes = {
+  leaderboards: PropTypes.arrayOf(PropTypes.shape(shape.leaderboardShape)).isRequired
+};
 
 export default LeaderboardsContainer;

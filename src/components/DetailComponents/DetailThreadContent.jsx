@@ -1,7 +1,7 @@
 import React from 'react';
-// import ThreadActions from '../HomeComponents/ThreadActions';
 import { useDispatch } from 'react-redux';
 import { Avatar } from 'flowbite-react';
+import PropTypes from 'prop-types';
 import { postedAt } from '../../utils';
 import ThreadActions from '../HomeComponents/ThreadActions';
 import DetailThreadCommentInput from './DetailThreadCommentInput';
@@ -9,8 +9,9 @@ import DetailComments from './DetailComments';
 import {
   asyncDownVoteComment, asyncDownVoteDetailThread, asyncUpVoteComment, asyncUpVoteDetailThread
 } from '../../states/detailThread/action';
+import shape from '../../utils/varshape';
+import GlobalVoteCount from '../GlobalVoteCount';
 
-// title, category, comments, createdAt, downVotesBy, id, owner, title, upVotesBy
 function DetailThreadContent({
   addComment, id, title, createdAt, category, body, owner,
   authUser, upVotesBy, downVotesBy, comments
@@ -72,7 +73,12 @@ function DetailThreadContent({
               userId={authUser.id}
             />
           )
-          : null}
+          : (
+            <GlobalVoteCount
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+            />
+          )}
       </article>
       <div className="border-b border-solid border-[#393E46] p-5 pb-3">
         {authUser
@@ -100,5 +106,23 @@ function DetailThreadContent({
     </section>
   );
 }
+
+DetailThreadContent.propTypes = {
+  addComment: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  owner: PropTypes.shape(shape.authUserShape).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape),
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape(shape.commenShape)).isRequired
+};
+
+DetailThreadContent.defaultProps = {
+  authUser: null
+};
 
 export default DetailThreadContent;

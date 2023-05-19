@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CategoryItem from './CategoryItem';
 
 function Categories({ categories, chosenCategory, chosenCategoryHandler }) {
@@ -22,5 +23,15 @@ function Categories({ categories, chosenCategory, chosenCategoryHandler }) {
     </div>
   );
 }
+
+Categories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  chosenCategory: PropTypes.string,
+  chosenCategoryHandler: PropTypes.func.isRequired
+};
+
+Categories.defaultProps = {
+  chosenCategory: ''
+};
 
 export default Categories;

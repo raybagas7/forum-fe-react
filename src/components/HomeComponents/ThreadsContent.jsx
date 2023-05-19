@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ThreadActions from './ThreadActions';
 import { postedAt } from '../../utils';
 import shape from '../../utils/varshape';
+import GlobalVoteCount from '../GlobalVoteCount';
 
 function ThreadsContent({
   id, user, title, body, category, createdAt, upVotesBy, downVotesBy, authUser, onUpVote, onDownVote
@@ -54,7 +55,12 @@ function ThreadsContent({
               onDownVote={onDownVote}
             />
           )
-          : null}
+          : (
+            <GlobalVoteCount
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+            />
+          )}
       </article>
     </Link>
   );
@@ -69,9 +75,13 @@ ThreadsContent.propTypes = {
   createdAt: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  authUser: PropTypes.shape(shape.authUserShape).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape),
   onUpVote: PropTypes.func.isRequired,
   onDownVote: PropTypes.func.isRequired,
+};
+
+ThreadsContent.defaultProps = {
+  authUser: null,
 };
 
 export default ThreadsContent;

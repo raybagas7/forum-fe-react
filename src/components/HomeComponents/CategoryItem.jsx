@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
   const onClickCategory = () => {
@@ -28,5 +29,15 @@ function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
     </div>
   );
 }
+
+CategoryItem.propTypes = {
+  category: PropTypes.string.isRequired,
+  chosenCategory: PropTypes.string,
+  chosenCategoryHandler: PropTypes.func.isRequired
+};
+
+CategoryItem.defaultProps = {
+  chosenCategory: ''
+};
 
 export default CategoryItem;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GlobalCategoryItem from './GlobalCategoryItem';
 
 function GlobalCategories({ categories, chosenCategory, chosenCategoryHandler }) {
@@ -22,5 +23,15 @@ function GlobalCategories({ categories, chosenCategory, chosenCategoryHandler })
     </div>
   );
 }
+
+GlobalCategories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  chosenCategory: PropTypes.string,
+  chosenCategoryHandler: PropTypes.func.isRequired
+};
+
+GlobalCategories.defaultProps = {
+  chosenCategory: ''
+};
 
 export default GlobalCategories;

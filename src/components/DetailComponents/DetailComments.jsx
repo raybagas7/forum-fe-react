@@ -1,7 +1,10 @@
 import React from 'react';
 import { Avatar } from 'flowbite-react';
+import PropTypes from 'prop-types';
 import { postedAt } from '../../utils';
 import ThreadActions from '../HomeComponents/ThreadActions';
+import shape from '../../utils/varshape';
+import GlobalVoteCount from '../GlobalVoteCount';
 
 function DetailComments({
   threadId,
@@ -15,17 +18,17 @@ function DetailComments({
   onUpVoteComment,
   onDownVoteComment
 }) {
-  // console.log('commentId', id);
-
   return (
     <article
       className="flex gap-3 p-5 pb-3 border-b border-solid border-[#393E46]"
     >
-      <Avatar
-        img={owner.avatar}
-        size="md"
-        rounded
-      />
+      <div>
+        <Avatar
+          img={owner.avatar}
+          size="md"
+          rounded
+        />
+      </div>
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex gap-3 items-center">
           <div>
@@ -52,11 +55,29 @@ function DetailComments({
               userId={authUser.id}
             />
           )
-          : null}
+          : (
+            <GlobalVoteCount
+              upVotesBy={upVotesBy}
+              downVotesBy={downVotesBy}
+            />
+          )}
       </div>
 
     </article>
   );
 }
+
+DetailComments.propTypes = {
+  threadId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  owner: PropTypes.shape(shape.authUserShape).isRequired,
+  createdAt: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authUser: PropTypes.shape(shape.authUserShape).isRequired,
+  onUpVoteComment: PropTypes.func.isRequired,
+  onDownVoteComment: PropTypes.func.isRequired
+};
 
 export default DetailComments;

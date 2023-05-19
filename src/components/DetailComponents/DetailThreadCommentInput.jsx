@@ -1,12 +1,13 @@
 import { Alert, Avatar, Progress } from 'flowbite-react';
 import React, { useRef, useState } from 'react';
-// / addComment, threadId,
+import PropTypes from 'prop-types';
+import shape from '../../utils/varshape';
+
 function DetailThreadCommentInput({ addComment, threadId, authUser }) {
   const [commentBoxFocus, setCommentBoxFocus] = useState(false);
   const [content, setContent] = useState('');
   const divRef = useRef(null);
 
-  // console.log(typeof content);
   const addNewComment = (e) => {
     if (content.trim()) {
       addComment({ content, id: threadId });
@@ -78,5 +79,11 @@ function DetailThreadCommentInput({ addComment, threadId, authUser }) {
     </div>
   );
 }
+
+DetailThreadCommentInput.propTypes = {
+  addComment: PropTypes.func.isRequired,
+  threadId: PropTypes.string.isRequired,
+  authUser: PropTypes.shape(shape.authUserShape).isRequired
+};
 
 export default DetailThreadCommentInput;

@@ -34,14 +34,10 @@ function DetailPage() {
     dispatch(asyncAddComment({ content, id: threadId }));
   };
 
-  // if (!detailThread) {
-  //   return null;
-  // }
   return (
     <div className="min-h-screen bg-[#222831] text-[#EEEEEE]">
       <div className="flex h-full w-full justify-between gap-5">
         <Navigation authUser={authUser} />
-        {/* <DetailThreadContent {...detailThread} authUser={authUser} /> */}
 
         {detailThread
           ? (
@@ -55,7 +51,7 @@ function DetailPage() {
             <section className="w-[615px] h-screen flex justify-center items-center max-w-[615px]">
               <Spinner
                 color="info"
-                aria-label="Success spinner example"
+                aria-label="Load"
               />
             </section>
           )}

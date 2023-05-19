@@ -1,6 +1,3 @@
-/**
- * @TODO: Define the reducer for the talks state
- */
 import { ActionType } from './action';
 
 function threadsReducer(threads = [], action = {}) {

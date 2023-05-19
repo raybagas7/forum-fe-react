@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function GlobalCategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
   const onClickCategory = () => {
     chosenCategoryHandler(category);
   };
-  // console.log(chosenCategoryHandler);
+
   return (
     <div>
       {category === chosenCategory
@@ -35,5 +36,15 @@ function GlobalCategoryItem({ category, chosenCategory, chosenCategoryHandler })
     </div>
   );
 }
+
+GlobalCategoryItem.propTypes = {
+  category: PropTypes.string.isRequired,
+  chosenCategory: PropTypes.string,
+  chosenCategoryHandler: PropTypes.func.isRequired
+};
+
+GlobalCategoryItem.defaultProps = {
+  chosenCategory: ''
+};
 
 export default GlobalCategoryItem;

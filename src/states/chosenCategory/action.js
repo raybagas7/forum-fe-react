@@ -12,9 +12,6 @@ const setCategoryActionCreator = (chosenCategory) => ({
 
 const clearCategoryActionCreator = () => ({
   type: ActionType.SET_CATEGORY,
-  payload: {
-    chosenCategory: '',
-  },
 });
 
 function setCategory(category) {

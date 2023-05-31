@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../components/Navigation';
 import ThreadsContainer from '../components/HomeComponents/ThreadsContainer';
 import Categories from '../components/HomeComponents/Categories';
-import { asyncPopulateUsersAndTalks } from '../states/shared/action';
+import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import { setCategory } from '../states/chosenCategory/action';
 
 function HomePage() {
@@ -21,7 +21,7 @@ function HomePage() {
   };
 
   useEffect(() => {
-    dispatch(asyncPopulateUsersAndTalks());
+    dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
 
   const threadList = threads.map((thread) => ({

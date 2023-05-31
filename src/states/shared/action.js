@@ -4,7 +4,7 @@ import { receiveUsersActionCreator } from '../users/action';
 import { receiveThreadsActionCreator } from '../threads/action';
 import { setAuthUserActionCreator } from '../authUser/action';
 
-function asyncPopulateUsersAndTalks() {
+function asyncPopulateUsersAndThreads() {
   return async (dispatch) => {
     dispatch(showLoading());
 
@@ -40,4 +40,4 @@ function asyncAutoLoginAfterSignup({ name, email, password }) {
   };
 }
 
-export { asyncPopulateUsersAndTalks, asyncAutoLoginAfterSignup };
+export { asyncPopulateUsersAndThreads, asyncAutoLoginAfterSignup };

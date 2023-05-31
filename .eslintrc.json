@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": ["plugin:react/recommended", "airbnb"],
   "parserOptions": {
@@ -29,16 +30,22 @@
     "react/destructuring-assignment": "off",
     "react/prop-types": "off",
     "react/no-danger": "off",
-    "jsx-a11y/label-has-associated-control": [ "error", {
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
         "required": {
-          "some": [ "nesting", "id"  ]
+          "some": ["nesting", "id"]
         }
-      }],
-      "jsx-a11y/label-has-for": [ "error", {
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
         "required": {
-          "some": [ "nesting", "id"  ]
+          "some": ["nesting", "id"]
         }
-      }],
+      }
+    ],
     "no-param-reassign": 0
   }
 }

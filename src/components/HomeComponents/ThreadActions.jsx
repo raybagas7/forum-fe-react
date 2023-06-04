@@ -40,8 +40,8 @@ function ThreadActions({
         >
           <div className="flex items-center justify-center gap-1 border-r border-solid border-white/30 pr-2 text-xs">
             {upVotesBy.includes(userId)
-              ? <AiFillLike className="h-5 w-5 text-[#EEEEEE]" />
-              : <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" />}
+              ? <AiFillLike className="h-5 w-5 text-[#EEEEEE]" data-testid="fill-like" />
+              : <AiOutlineLike className="h-5 w-5 text-[#EEEEEE]" data-testid="outline-like" />}
             <span>{upVotesBy.length}</span>
           </div>
         </button>
@@ -52,8 +52,8 @@ function ThreadActions({
         >
           <div className="flex items-center justify-center gap-1 text-xs">
             {downVotesBy.includes(userId)
-              ? <AiFillDislike className="h-5 w-5 text-[#EEEEEE]" />
-              : <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" />}
+              ? <AiFillDislike className="h-5 w-5 text-[#EEEEEE]" data-testid="fill-dislike" />
+              : <AiOutlineDislike className="h-5 w-5 text-[#EEEEEE]" data-testid="outline-dislike" />}
             <span>{downVotesBy.length}</span>
           </div>
         </button>

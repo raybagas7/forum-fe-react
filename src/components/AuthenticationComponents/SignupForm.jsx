@@ -64,6 +64,7 @@ function SignupForm({ signup }) {
         <TextInput
           id="password_signup"
           type="password"
+          placeholder="Password"
           value={password}
           onChange={onPasswordChange}
           required
@@ -75,7 +76,7 @@ function SignupForm({ signup }) {
           type="button"
           className="w-fit bg-[#00adb5] text-white hover:bg-[#00adb5]/80 transition duration-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Log in
+          Sign up to Blaast
         </button>
       </div>
     </div>

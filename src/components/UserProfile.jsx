@@ -38,8 +38,8 @@ function UserProfile({
               rounded
             />
             <div className="flex flex-col">
-              <div className="text-left"><span>{name}</span></div>
-              <div className="text-grey-500 text-left text-[#858a91]">
+              <div className="text-left" id="user_name"><span>{name}</span></div>
+              <div className="text-grey-500 text-left text-[#858a91]" id="user_email">
                 <span>{email}</span>
               </div>
             </div>

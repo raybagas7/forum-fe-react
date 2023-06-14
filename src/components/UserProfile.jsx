@@ -33,6 +33,7 @@ function UserProfile({
         >
           <div className="flex gap-3">
             <Avatar
+              data-cy="user-avatar"
               img={avatar}
               placeholderInitials="PP"
               size="md"

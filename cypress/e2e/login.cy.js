@@ -85,7 +85,7 @@ describe('Login spec', () => {
     });
   });
 
-  it('should display homepage with profile name and email', () => {
+  it('should display homepage with profile avatar', () => {
     // Verify the Log in button is visible in the Home Page if the user not logged in
     cy.get('button').contains(/^Log in$/).click();
 
@@ -100,7 +100,6 @@ describe('Login spec', () => {
     cy.get('button').contains(/^Log in to your account$/).click();
 
     // The name and email user must be visible if user Log in successfully
-    cy.get('#user_name').should('be.visible');
-    cy.get('#user_email').should('be.visible');
+    cy.get('[data-cy="user-avatar"]').should('be.visible');
   });
 });

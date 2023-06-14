@@ -40,7 +40,7 @@ function ThreadsContent({
                 <span className="text-[#00ADB5] after:m-1 after:text-[#858a91] after:content-['·']">
                   {user.name}
                 </span>
-                <span className="after:m-1 text-[#858a91] after:content-['·']">
+                <span className="after:m-1 text-[#858a91] after:content-['·'] max-lg:hidden">
                   {user.email}
                 </span>
                 <span className="text-[#858a91]">{postedAt(createdAt)}</span>

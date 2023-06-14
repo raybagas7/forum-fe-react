@@ -8,24 +8,23 @@ function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
 
   return (
     <div>
-      {category === chosenCategory
-        ? (
-          <button
-            type="button"
-            onClick={onClickCategory}
-            className="cursor-pointer rounded-full bg-[#00ADB5] p-1 pl-3 pr-3 before:content-['#'] hover:bg-[#00ADB5]/30"
-          >
-            {category}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={onClickCategory}
-            className="cursor-pointer rounded-full bg-white/10 p-1 pl-3 pr-3 before:content-['#'] hover:bg-white/30"
-          >
-            {category}
-          </button>
-        )}
+      {category === chosenCategory ? (
+        <button
+          type="button"
+          onClick={onClickCategory}
+          className="max-w-[150px] cursor-pointer break-words rounded-full bg-[#00ADB5] p-1 pl-3 pr-3 hover:bg-[#00ADB5]/30"
+        >
+          <div className="line-clamp-1 before:content-['#']">{category}</div>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={onClickCategory}
+          className="max-w-[150px] cursor-pointer break-words rounded-full bg-white/10 p-1 pl-3 pr-3 hover:bg-white/30"
+        >
+          <div className="line-clamp-1 before:content-['#']">{category}</div>
+        </button>
+      )}
     </div>
   );
 }
@@ -33,11 +32,11 @@ function CategoryItem({ category, chosenCategory, chosenCategoryHandler }) {
 CategoryItem.propTypes = {
   category: PropTypes.string.isRequired,
   chosenCategory: PropTypes.string,
-  chosenCategoryHandler: PropTypes.func.isRequired
+  chosenCategoryHandler: PropTypes.func.isRequired,
 };
 
 CategoryItem.defaultProps = {
-  chosenCategory: ''
+  chosenCategory: '',
 };
 
 export default CategoryItem;

@@ -4,8 +4,8 @@ import CategoryItem from './CategoryItem';
 
 function Categories({ categories, chosenCategory, chosenCategoryHandler }) {
   return (
-    <div className="flex-1">
-      <div className="fixed mt-5 w-[400px]">
+    <div className="flex-1 max-xl:hidden">
+      <div className="fixed mt-5 w-[400px] max-2xl:w-[250px]">
         <div className="rounded-xl bg-[#393E46] p-5">
           <h2 className="mb-3 text-xl">Kategori Popular</h2>
           <div className="flex flex-wrap gap-1">
@@ -27,11 +27,11 @@ function Categories({ categories, chosenCategory, chosenCategoryHandler }) {
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   chosenCategory: PropTypes.string,
-  chosenCategoryHandler: PropTypes.func.isRequired
+  chosenCategoryHandler: PropTypes.func.isRequired,
 };
 
 Categories.defaultProps = {
-  chosenCategory: ''
+  chosenCategory: '',
 };
 
 export default Categories;

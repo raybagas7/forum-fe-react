@@ -38,7 +38,7 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#222831] text-[#EEEEEE]">
-      <div className="flex h-full w-full justify-between gap-5">
+      <div className="flex h-full w-full justify-between gap-5 max-xl:gap-0">
         <Navigation authUser={authUser} />
         <ThreadsContainer
           threads={filteredThreadList()}

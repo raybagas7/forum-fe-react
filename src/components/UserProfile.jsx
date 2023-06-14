@@ -28,7 +28,8 @@ function UserProfile({
         <button
           type="button"
           className="si-bootstrap text-sm mb-5 flex w-64 cursor-pointer items-center justify-between
-     rounded-full p-3 transition duration-100 hover:bg-[#393e46]"
+     rounded-full p-3 transition duration-100 hover:bg-[#393e46]
+     max-lg:w-auto max-lg:h-auto"
         >
           <div className="flex gap-3">
             <Avatar
@@ -37,14 +38,14 @@ function UserProfile({
               size="md"
               rounded
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col max-lg:hidden">
               <div className="text-left" id="user_name"><span>{name}</span></div>
               <div className="text-grey-500 text-left text-[#858a91]" id="user_email">
                 <span>{email}</span>
               </div>
             </div>
           </div>
-          <SlOptions />
+          <SlOptions className="max-lg:hidden" />
         </button>
       </Tooltip>
     </div>

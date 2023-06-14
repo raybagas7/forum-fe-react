@@ -35,10 +35,10 @@ function Navigation({ authUser }) {
 
   return (
     <>
-      <div className="flex flex-1 flex-row-reverse">
+      <div className="flex flex-1 flex-row-reverse max-lg:flex-row max-lg:min-w-[100px] max-xl:justify-center p-2">
         <div className="fixed h-screen">
           <div className="flex h-full flex-col justify-between">
-            <div className="mt-5">
+            <div className="mt-5 max-lg:flex max-lg:flex-col max-lg:items-center">
               <div className="group/logo mb-5 h-fit w-fit cursor-pointer rounded-full p-2 transition duration-100 hover:bg-white/10">
                 <GiFire className="h-8 w-8 transition duration-100 group-hover/logo:text-[#00ADB5]" />
               </div>
@@ -50,14 +50,14 @@ function Navigation({ authUser }) {
                     className="flex w-fit cursor-pointer items-center gap-5 rounded-full p-2 transition duration-100 hover:bg-white/10"
                   >
                     {activeNav === '/' ? <AiFillHome className="h-8 w-8" /> : <AiOutlineHome className="h-8 w-8" />}
-                    <span className="mr-5">Home</span>
+                    <span className="mr-5 max-lg:hidden">Home</span>
                   </Link>
                   <Link
                     to="/leaderboards"
                     className="flex w-fit cursor-pointer items-center gap-5 rounded-full p-2 transition duration-100 hover:bg-white/10"
                   >
                     {activeNav === '/leaderboards' ? <MdLeaderboard className="h-8 w-8" /> : <MdOutlineLeaderboard className="h-8 w-8" />}
-                    <span className="mr-5">Leaderboards</span>
+                    <span className="mr-5 max-lg:hidden">Leaderboards</span>
                   </Link>
                 </ul>
               </nav>

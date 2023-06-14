@@ -5,13 +5,14 @@ import SignupModal from './SignupModal';
 
 function AuthenticationContainer({ login, signup }) {
   return (
-    <div className="fixed flex justify-between bottom-0 h-20 shadow-behind
-        shadow-white/20 bg-[#00ADB5] w-full gap-5"
+    <div
+      className="fixed bottom-0 z-10 flex h-20 w-full
+        justify-between gap-5 bg-[#00ADB5] shadow-behind shadow-white/20"
     >
       <div className="flex-1" />
-      <div className="w-[615px] max-w-[615px] flex items-center justify-between">
+      <div className="flex w-[615px] max-w-[615px] items-center justify-between">
         <div>
-          <p className="text-[1.5em] font-bold">Kumpulan Thread Keren</p>
+          <p className="text-[1.5em] font-bold max-lg:text-[1em]">Kumpulan Thread Keren</p>
           <p className="text-sm">Cuman disini</p>
         </div>
         <div className="flex gap-3">
